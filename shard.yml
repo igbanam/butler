@@ -1,0 +1,13 @@
+name: butler
+version: 0.1.0
+
+authors:
+  - Owajigbanam Ogbuluijah <xigbanam@gmail.com>
+
+targets:
+  butler:
+    main: src/butler.cr
+
+crystal: 0.34.0
+
+license: MIT
