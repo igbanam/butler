@@ -20,8 +20,8 @@ module Butler
     end
 
     private def self.reject!(intent : Array(String))
-      STDERR.puts "I do not understand #{intent}"
-      raise UnknownInstruction.new
+      message = "I do not understand #{intent}"
+      raise UnknownInstruction.new(message: message)
     end
 
     def initialize(@instruction : String, @details : Array(String))

@@ -31,8 +31,9 @@ module Butler
     parser.unknown_args do |input|
       raise UnknownInstruction.new if input.empty?
       Dispatcher.dispatch!(input)
-    rescue e : UnknownInstruction
+    rescue e : UnknownInstruction | MalformedInstruction
       STDERR.puts e.message
+      STDERR.puts e.cause
       STDERR.puts parser
     end
   end
