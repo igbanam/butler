@@ -1,5 +1,8 @@
 module Butler
   BUTLER_DIRECTORY = ".butler"
+  # .butler
+  #   +-> service.log
+  #   +-> tasks.json
 
   module Instruction
     abstract class Instruction
@@ -17,6 +20,13 @@ module Butler
       end
 
       def execute
+        create_butler_directory
+        Butler::Logger.instance.log "Initialized Butler in #{__DIR__}"
+      rescue File::AlreadyExistsError
+        STDERR.puts "Your butler is already initialized."
+      end
+
+      private def create_butler_directory
         Dir.mkdir BUTLER_DIRECTORY
       end
     end
