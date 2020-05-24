@@ -1,18 +1,36 @@
-# butler
+# Butler
 
-TODO: Write a description here
+Ever been stuck at which project management tool to use in managing your projects? Now you don't have to leave the comfort of your commandline to manage your projects.
+
+Butler brings the power of project management right into your terminal; right into your project. Anywhere your project goes, yoru butler goes.
 
 ## Installation
 
-TODO: Write installation instructions here
+#### From Github
+
+- Clone the repository
+- `shards build`
+- Link the `./bin` directory to your PATH
 
 ## Usage
 
-TODO: Write usage instructions here
+#### Initialize a Butler
 
-## Development
+```
+butler init
+```
 
-TODO: Write development instructions here
+#### Create a task
+
+```
+butler tasks create [TITLE]
+```
+
+#### Show tasks
+
+```
+butler show tasks
+```
 
 ## Contributing
 
