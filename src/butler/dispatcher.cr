@@ -7,7 +7,8 @@ module Butler
 
     COMMAND_MAP = {
       "init" => Butler::Instruction::Initialize,
-      "task-add" => Butler::Instruction::CreateTask
+      "task-add" => Butler::Instruction::CreateTask,
+      "task-list" => Butler::Instruction::ListTasks
     }
 
     def self.dispatch!(intent : Array(String))

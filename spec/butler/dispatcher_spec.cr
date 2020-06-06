@@ -20,6 +20,12 @@ module Butler
       instruction.is_a?(Instruction::CreateTask).should be_true
     end
 
+    it "routes 'task List' to the ListTasks instruction" do
+      intent = "task list".split
+      instruction = Dispatcher.new(intent.first, intent[1..-1]).route
+      instruction.is_a?(Instruction::ListTasks).should be_true
+    end
+
     after_all do
       FileUtils.rm_rf BUTLER_DIRECTORY
     end

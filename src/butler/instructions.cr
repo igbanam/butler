@@ -63,5 +63,18 @@ module Butler
         "butler task create #{@details}"
       end
     end
+
+    class ListTasks < Instruction
+      def initialize(details : Array(String))
+        error_message = "List syntax is  ---> ./butler task list"
+        reject!(concern: MalformedInstruction.new(error_message)) unless details.empty?
+      end
+
+      def execute
+      end
+
+      def to_s
+      end
+    end
   end
 end
