@@ -1,7 +1,13 @@
+require "file_utils"
 require "../spec_helper"
 
 module Butler
   describe Store do
+    before_all do
+      FileUtils.rm_rf BUTLER_DIRECTORY
+      Instruction::Initialize.new([] of String).execute
+    end
+
     it "must be singleton" do
       a = Store.instance
       b = Store.instance
@@ -41,6 +47,10 @@ module Butler
 
         uniqueness.should be_false
       end
+    end
+
+    after_all do
+      FileUtils.rm_rf BUTLER_DIRECTORY
     end
   end
 end

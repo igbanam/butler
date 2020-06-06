@@ -10,7 +10,6 @@ module Butler
     end
 
     def persist!
-      puts "Tasks are #{@tasks}"
       File.write @store_path, @tasks.to_json
     end
 
