@@ -2,11 +2,12 @@ module Butler
   class Dispatcher
     SUPPORTED_INSTRUCTIONS = [
       "init",
-      "tasks"
+      "task"
     ]
 
     COMMAND_MAP = {
       "init" => Butler::Instruction::Initialize,
+      "task-add" => Butler::Instruction::CreateTask
     }
 
     def self.dispatch!(intent : Array(String))
@@ -27,8 +28,16 @@ module Butler
     def initialize(@instruction : String, @details : Array(String))
     end
 
-    def dispatch : Nil
-      COMMAND_MAP[@instruction].new(@details).execute
+    def dispatch
+      route.execute
+    end
+
+    def route : Instruction::Instruction
+      if @instruction == "task" # this is an umbrella instruction
+        @instruction = "#{@instruction}-#{@details[0]}"
+        @details = @details[1..-1]
+      end
+      COMMAND_MAP[@instruction].new(@details)
     end
   end
 
