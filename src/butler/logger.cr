@@ -8,9 +8,21 @@ module Butler
       @@instance ||= new
     end
 
-    def log(message : String) : Nil
-      File.open(@logfile_path, "a") do |log_file|
-        log_file.puts message
+    def log(message : String)
+      write message
+    end
+
+    def log(instruction : Instruction::Instruction)
+      write "[event] #{instruction}"
+    end
+
+    private def write(content : String)
+      content += "\n"
+
+      if File.exists? @logfile_path
+        File.write @logfile_path, content, mode: "a"
+      else
+        File.write @logfile_path, content
       end
     end
   end
