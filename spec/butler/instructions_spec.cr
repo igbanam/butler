@@ -35,10 +35,10 @@ module Butler
           expected.should_not eq(fresh)
         end
       end
-    end
 
-    Spec.after_each do
-      FileUtils.rm_r(".butler") if File.directory?(".butler")
+      after_each do
+        FileUtils.rm_rf BUTLER_DIRECTORY
+      end
     end
   end
 end
