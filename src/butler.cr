@@ -17,8 +17,23 @@ module Butler
   VERSION = "0.1.0"
 
   OptionParser.parse do |parser|
-    parser.banner = "Usage: butler <command> [<args>]\n\nSupported Commands are:
-    #{Dispatcher::SUPPORTED_INSTRUCTIONS}"
+    parser.banner = <<-BANNER
+          #####
+         #####
+        ##    \\                  _______   __    __  ________  __        ________  _______
+        ## a  a       _         /       \\ /  |  /  |/        |/  |      /        |/       \\
+        @   '._)     | |        $$$$$$$  |$$ |  $$ |$$$$$$$$/ $$ |      $$$$$$$$/ $$$$$$$  |
+         | __ |      | |        $$ |__$$ |$$ |  $$ |   $$ |   $$ |      $$ |__    $$ |__$$ |
+       _.\\___/_   ___|_|___     $$    $$< $$ |  $$ |   $$ |   $$ |      $$    |   $$    $$<
+     .'\\> \\Y/|<'.  '._.-'       $$$$$$$  |$$ |  $$ |   $$ |   $$ |      $$$$$/    $$$$$$$  |
+    /  \\ \\_\\/ /  '-' /          $$ |__$$ |$$ \\__$$ |   $$ |   $$ |_____ $$ |_____ $$ |  $$ |
+    | --'\\_/|/ |   _/           $$    $$/ $$    $$/    $$ |   $$       |$$       |$$ |  $$ |
+    \\___.-' |  |`'`             $$$$$$$/   $$$$$$/     $$/    $$$$$$$$/ $$$$$$$$/ $$/   $$/
+      |     |  |
+
+      Usage: butler <command> [<args>]\n\nSupported Commands are:
+      #{Dispatcher::SUPPORTED_INSTRUCTIONS}
+    BANNER
 
     parser.on "-v", "Show Version" do
       puts "Butler, version #{VERSION}"
@@ -34,7 +49,6 @@ module Butler
     rescue e : UnknownInstruction | MalformedInstruction
       STDERR.puts e.message
       STDERR.puts e.cause
-      STDERR.puts parser
     end
   end
 
