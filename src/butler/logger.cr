@@ -13,7 +13,7 @@ module Butler
     end
 
     def log(instruction : Instruction::Instruction)
-      write "[event] #{instruction}"
+      write "[event][#{Time.utc}] #{instruction.to_s}"
     end
 
     private def write(content : String)
