@@ -13,6 +13,11 @@ module Butler
       def reject!(concern)
         raise concern
       end
+
+      def display(collection : Array)
+        collection.each { |item| puts "#{item}" }
+        :qa
+      end
     end
 
     class Initialize < Instruction
@@ -61,6 +66,28 @@ module Butler
 
       def to_s
         "butler task create #{@details}"
+      end
+    end
+
+    class ListTasks < Instruction
+      def initialize(details : Array(String))
+        error_message = "List syntax is  ---> ./butler task list"
+        reject!(concern: MalformedInstruction.new(error_message)) unless details.empty?
+      end
+
+      def execute
+        tasks = read_tasks
+
+        puts "+==== TASK LIST ====+"
+        display tasks
+      end
+
+      def to_s
+        "bundler tasks list"
+      end
+
+      private def read_tasks
+        Store.instance.tasks
       end
     end
   end

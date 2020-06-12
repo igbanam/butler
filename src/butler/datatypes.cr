@@ -16,6 +16,13 @@ module Butler
       end
 
       def initialize(@title, @completed_at); end
+
+      def to_s
+        done = " "
+        done = "✔️"if completed_at
+
+        "[#{done}] #{title}"
+      end
     end
   end
 end

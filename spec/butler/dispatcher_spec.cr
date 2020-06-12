@@ -14,10 +14,16 @@ module Butler
       end
     end
 
-    it "routes 'task add' to the AddTask instruction" do
+    it "routes 'task add' to the CreateTask instruction" do
       intent = "task add Begin!".split
       instruction = Dispatcher.new(intent.first, intent[1..-1]).route
       instruction.is_a?(Instruction::CreateTask).should be_true
+    end
+
+    it "routes 'task List' to the ListTasks instruction" do
+      intent = "task list".split
+      instruction = Dispatcher.new(intent.first, intent[1..-1]).route
+      instruction.is_a?(Instruction::ListTasks).should be_true
     end
 
     after_all do
