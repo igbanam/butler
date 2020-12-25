@@ -1,5 +1,6 @@
+*.dwarf
+/.butler/
+/.shards/
+/bin/
 /docs/
 /lib/
-/bin/
-/.shards/
-*.dwarf
